@@ -6,6 +6,7 @@ const addProblem = asyncHandler(async (req, res) => {
         problemStatement,
         example,
         constraints,
+        difficultyLevel,
         pythonSolution,
         pythonDriverCode,
         pythonStarterCode,
@@ -25,6 +26,7 @@ const addProblem = asyncHandler(async (req, res) => {
             problemStatement,
             example,
             constraints,
+            difficultyLevel,
             pythonSolution,
             pythonDriverCode,
             pythonStarterCode,
@@ -47,6 +49,7 @@ const addProblem = asyncHandler(async (req, res) => {
             problemStatement,
             example,
             constraints,
+            difficultyLevel,
             pythonSolution,
             pythonDriverCode,
             pythonStarterCode,
@@ -76,11 +79,21 @@ const addProblem = asyncHandler(async (req, res) => {
     });
 });
 
-const getProblems = asyncHandler(async (req, res) => {
-    const problems = await Problem.find();
+const getAllProblems = asyncHandler(async (req, res) => {
+    const problems = await Problem.find().select("_id problemStatement example constraints difficultyLevel");
     return res.status(200).json({ problems });
+});
+
+const getProblemById = asyncHandler(async (req,res)=> {
+    const problemID = req.params.id;
+
+    const problem = await Problem.findById(problemID);
+
+    return res.status(200).json(
+        problem
+    );
 });
 
 const updateProblem = asyncHandler(async (req, res) => {});
 
-export { addProblem, updateProblem, getProblems };
+export { addProblem, updateProblem, getAllProblems , getProblemById};

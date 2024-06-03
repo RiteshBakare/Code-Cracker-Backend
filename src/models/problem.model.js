@@ -14,6 +14,11 @@ const problemSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        difficultyLevel: {
+            type: String,
+            enum: ["Easy","Medium","Hard"],
+            required: true,
+        },
         // ----------------------------------------------------------------
         pythonSolution: {
             type: String,
