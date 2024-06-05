@@ -3,6 +3,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 const addProblem = asyncHandler(async (req, res) => {
     const {
+        title,
         problemStatement,
         example,
         constraints,
@@ -23,6 +24,7 @@ const addProblem = asyncHandler(async (req, res) => {
 
     if (
         [
+            title,
             problemStatement,
             example,
             constraints,
@@ -46,6 +48,7 @@ const addProblem = asyncHandler(async (req, res) => {
 
     try {
         const problem = await Problem.create({
+            title,
             problemStatement,
             example,
             constraints,
@@ -80,7 +83,7 @@ const addProblem = asyncHandler(async (req, res) => {
 });
 
 const getAllProblems = asyncHandler(async (req, res) => {
-    const problems = await Problem.find().select("_id problemStatement example constraints difficultyLevel");
+    const problems = await Problem.find().select("_id title problemStatement example constraints difficultyLevel");
     return res.status(200).json({ problems });
 });
 
