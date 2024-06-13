@@ -22,7 +22,7 @@ const runCpp = asyncHandler(async (req, res) => {
 
     // Chnage this code to ./output.exe in Production mode
     exec(
-        "g++ test.cpp -o output && output.exe",
+        "g++ test.cpp -o output && ./output",
         async (error, stdout, stderr) => {
             fs.unlinkSync("test.cpp");
             fs.unlinkSync("output.exe");
