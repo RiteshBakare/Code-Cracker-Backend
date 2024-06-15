@@ -136,4 +136,12 @@ const logOut = asyncHandler(async (req,res)=> {
     });
 })
 
-export { loginUser, registerUser, updateAvatar ,logOut };
+const getUserDetails = asyncHandler(async (req,res)=> {
+    const userId = req.userId;
+
+    const user = await User.findById(userId).select('-password');
+
+    return res.status(200).json(user);
+})
+
+export { loginUser, registerUser, updateAvatar ,logOut,getUserDetails };

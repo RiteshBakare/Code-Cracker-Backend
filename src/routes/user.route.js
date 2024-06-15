@@ -1,5 +1,6 @@
 import express from "express";
 import {
+    getUserDetails,
     loginUser,
     logOut,
     registerUser,
@@ -24,5 +25,6 @@ userRouter.post(
     updateAvatar
 );
 userRouter.get("/logout",logOut);
+userRouter.get("/details",auth,getUserDetails)
 
 export default userRouter;
