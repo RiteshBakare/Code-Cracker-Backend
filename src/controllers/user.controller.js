@@ -139,7 +139,9 @@ const logOut = asyncHandler(async (req,res)=> {
 const getUserDetails = asyncHandler(async (req,res)=> {
     const userId = req.userId;
 
-    const user = await User.findById(userId).select('-password');
+    const user = await User.findById(userId)
+        .select('-password')
+        .populate('problemSolved', 'title');
 
     return res.status(200).json(user);
 })
