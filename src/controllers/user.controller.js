@@ -136,7 +136,9 @@ const logOut = asyncHandler(async (req,res)=> {
     });
 })
 
+
 const getUserDetails = asyncHandler(async (req,res)=> {
+
     const userId = req.userId;
 
     const user = await User.findById(userId)
