@@ -5,7 +5,7 @@ import {auth} from "../middleware/auth.middleware.js"
 const problemRoute = express.Router();
 
 problemRoute.post("/add",auth,addProblem);
-problemRoute.get("/",auth,getAllProblems);
-problemRoute.get("/:id",auth,getProblemById)
+problemRoute.get("/",getAllProblems);
+problemRoute.get("/:id",getProblemById)
 
 export default problemRoute;

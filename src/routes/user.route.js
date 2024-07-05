@@ -24,7 +24,7 @@ userRouter.post(
     ]),
     updateAvatar
 );
-userRouter.get("/logout",logOut);
+userRouter.get("/logout",auth,logOut);
 userRouter.get("/details",auth,getUserDetails)
 
 export default userRouter;

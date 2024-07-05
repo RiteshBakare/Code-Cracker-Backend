@@ -83,20 +83,22 @@ const addProblem = asyncHandler(async (req, res) => {
 });
 
 const getAllProblems = asyncHandler(async (req, res) => {
-    const problems = await Problem.find().select("_id title problemStatement example constraints difficultyLevel");
+    const problems = await Problem.find().select(
+        "_id title problemStatement example constraints difficultyLevel"
+    );
     return res.status(200).json({ problems });
 });
 
-const getProblemById = asyncHandler(async (req,res)=> {
+const getProblemById = asyncHandler(async (req, res) => {
     const problemID = req.params.id;
 
-    const problem = await Problem.findById(problemID);
-
-    return res.status(200).json(
-        problem
+    const problem = await Problem.findById(problemID).select(
+        "-pythonSolution -pythonDriverCode -javaSolution -javaDriverCode -cppSolution -cppDriverCode -javaScriptSolution -javaScriptDriverCode"
     );
+
+    return res.status(200).json(problem);
 });
 
 const updateProblem = asyncHandler(async (req, res) => {});
 
-export { addProblem, updateProblem, getAllProblems , getProblemById};
+export { addProblem, updateProblem, getAllProblems, getProblemById };
