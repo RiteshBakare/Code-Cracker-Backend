@@ -44,7 +44,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
     // Send the user and the token to the client
     res.status(200).cookie("auth_token", token, options).json({
-        user: user,
         token: token,
     });
 });
