@@ -97,7 +97,6 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // sending the user and the token to the client
     return res.status(201).cookie("auth_token", token, options).json({
-        user: user,
         token: token,
     });
 });
